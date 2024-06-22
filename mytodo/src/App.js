@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState ,useEffect} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash , faXmark, faCheck} from '@fortawesome/free-solid-svg-icons'
+import { faTrash , faXmark, faCheck, faRocket} from '@fortawesome/free-solid-svg-icons'
 
 function App() {
 
@@ -88,7 +88,7 @@ function App() {
           />
           <button style={{padding:"10px"}} onClick={handleSubmit}>
             
-              Add Task
+          <FontAwesomeIcon icon={faRocket} />
           
           </button>
         </div>
