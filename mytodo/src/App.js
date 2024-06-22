@@ -1,5 +1,7 @@
 import "./App.css";
 import React, { useState ,useEffect} from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash , faXmark, faCheck} from '@fortawesome/free-solid-svg-icons'
 
 function App() {
 
@@ -33,7 +35,7 @@ function App() {
   useEffect(()=>{
     
     setInterval(()=>{
-      setTimer(new Date().getDate() + "/" + (new Date().getMonth() + 1) + "/" + new Date())
+      setTimer(new Date().toLocaleDateString())
     },1000)
 
   },[])
@@ -66,61 +68,46 @@ function App() {
   
 
   return (
-    <div className="App">
+    <div className="App" >
       <div
         style={{
-          width: "100vw",
-          height: "100vh",
-          background: "black",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <div style={{ color: "white" ,fontSize:"25px"}}>
+        <div style={{ color: "#BBE9FF" ,fontSize:"25px"}}>
           <h1>Just Do It</h1>
         </div>
         <div style={{display:"flex" , alignItems:"center" , gap:"10px"}}>
           <input
-            style={{ width: "400px", padding: "16px", borderRadius: "5px" }}
+            style={{ width: "auto", padding: "10px", borderRadius: "5px" }}
             type="text"
             placeholder="Enter your task" value={task.taskName} name="taskName" onChange={(event)=>handleChange(event)}
           />
-          <button onClick={handleSubmit}>
-            <span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-              >
-                <path fill="none" d="M0 0h24v24H0z"></path>
-                <path
-                  fill="currentColor"
-                  d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"
-                ></path>
-              </svg>{" "}
+          <button style={{padding:"10px"}} onClick={handleSubmit}>
+            
               Add Task
-            </span>
+          
           </button>
         </div>
 
 
-        <div style={{color:"white" , marginTop:"20px"}}>
+        <div style={{color:"#BBE9FF" , marginTop:"20px"}}>
          {timer}
         </div>
 
          
          <div>
-          {taskList.map((e,index)=> <div key={e.id} style={{display:"flex" , alignItems:"center" , background:"#686D76" ,color:"white"  , width:"500px" , marginTop:"20px" , borderRadius:"20px"}}>
+          {taskList.map((e,index)=> <div key={e.id} style={{display:"flex" , alignItems:"center" , background:"#686D76" ,color:"#BBE9FF"  , width:"auto" , marginTop:"20px" , borderRadius:"20px", justifyContent:"space-between", padding:"10px", gap:"10px" , textWrap:"wrap", height:"auto"}}>
                   
-                  <div style={{width:"50%"}}>
-                     <h2>{e.taskName}</h2>
+                  <div style={{maxWidth:"auto" , textWrap:"wrap" }}>
+                     <h4>{e.taskName}</h4>
                   </div>
-                  <div style={{width:"30%" , display:"flex" , alignItems:"center" ,textWrap:"nowrap", gap:"10px", color:"white"}}>
-                      <button onClick={()=>handleStatus(e.id)}>{e.taskstatus? "Completed" : "Not Completed"}</button>
-                      <button onClick={()=>handleDelete(e.id)}>Delete</button>
+                  <div style={{width:"auto" , display:"flex" , alignItems:"center" ,gap:"5px", color:"white"}}>
+                      <button onClick={()=>handleStatus(e.id)}>{e.taskstatus? <FontAwesomeIcon icon={faCheck} /> : <FontAwesomeIcon icon={faXmark} />}</button>
+                      <button onClick={()=>handleDelete(e.id)}> <FontAwesomeIcon icon={faTrash} /> </button>
                   </div>
               
 
